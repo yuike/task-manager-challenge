@@ -1,5 +1,5 @@
 import type { Task } from "@/types/Task"
-import type { TaskAtom } from "@/types/TaskAtom"
+import dayjs from "dayjs"
 import { atom } from "jotai"
 import { atomFamily } from "jotai/utils"
 
@@ -12,8 +12,8 @@ export const taskAtomFamily = atomFamily((id: number) =>
     deadline: "",
     status: "todo",
     description: "",
-    createdAt: "",
-    updatedAt: "",
+    createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+    updatedAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
   }),
 )
 

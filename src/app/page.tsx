@@ -2,7 +2,7 @@
 
 import { AddButton } from "@/components/AddButton"
 import { TaskCard, TaskCardGroup } from "@/components/TaskCard"
-import { taskIdsAtom } from "@/libs/atoms"
+import { taskIdsAtom } from "@/libs/jotai/atoms"
 import { useAtomValue } from "jotai"
 
 export default function Home() {

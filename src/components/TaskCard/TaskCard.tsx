@@ -3,7 +3,7 @@ import type { FC } from "react"
 
 import { useAtom } from "jotai"
 
-import { taskAtomFamily } from "@/libs/atoms"
+import { taskAtomFamily } from "@/libs/jotai/atoms"
 import { Buttons } from "./Buttons"
 import { Description } from "./Description"
 import { Due } from "./Due"

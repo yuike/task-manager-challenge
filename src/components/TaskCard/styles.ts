@@ -1,4 +1,4 @@
-import { taskAtomFamily } from "@/libs/atoms"
+import { taskAtomFamily } from "@/libs/jotai/atoms"
 import { useAtom } from "jotai"
 
 export const getTaskCompletionStyle = (taskId: number) => {

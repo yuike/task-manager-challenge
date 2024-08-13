@@ -1,5 +1,5 @@
 import IconCalendar from "@/icons/IconCalendar"
-import { taskAtomFamily, taskIsEditingAtomFamily } from "@/libs/atoms"
+import { taskAtomFamily, taskIsEditingAtomFamily } from "@/libs/jotai/atoms"
 import type { Task } from "@/types/Task"
 import dayjs from "dayjs"
 import { useAtom } from "jotai"

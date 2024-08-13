@@ -1,7 +1,7 @@
 "use client"
 
 import IconPlus from "@/icons/IconPlus"
-import { taskIdsAtom } from "@/libs/atoms"
+import { taskIdsAtom } from "@/libs/jotai/atoms"
 import { atom, useSetAtom } from "jotai"
 import type { FC } from "react"
 import { Button } from "../Button"

@@ -6,7 +6,7 @@ import {
   taskAtomFamily,
   taskIdsAtom,
   taskIsEditingAtomFamily,
-} from "@/libs/atoms"
+} from "@/libs/jotai/atoms"
 import { atom, useAtom, useSetAtom } from "jotai"
 import type { FC } from "react"
 

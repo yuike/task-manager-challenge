@@ -1,4 +1,4 @@
-import { taskAtomFamily, taskIsEditingAtomFamily } from "@/libs/atoms"
+import { taskAtomFamily, taskIsEditingAtomFamily } from "@/libs/jotai/atoms"
 import type { Task } from "@/types/Task"
 import { useAtom } from "jotai"
 import type { ChangeEvent, ComponentProps, FC } from "react"
