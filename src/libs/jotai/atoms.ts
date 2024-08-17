@@ -5,6 +5,7 @@ import { atomFamily } from "jotai/utils"
 
 export const taskIdsAtom = atom<number[]>([])
 
+// TODO: derivedAtomを使ってsetした時、常にupdatedAtを更新するようにする
 export const taskAtomFamily = atomFamily((id: number) =>
   atom<Task>({
     id: id,
