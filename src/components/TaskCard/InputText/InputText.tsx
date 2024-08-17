@@ -24,8 +24,12 @@ export const InputText: FC<Props> = ({
   const [isEditing] = useAtom(taskIsEditingAtomFamily(taskId))
   const [task, setTask] = useAtom(taskAtomFamily(taskId))
   const inputSize = {
-    md: "px-2 py-1 rounded-lg",
-    lg: "px-4 py-1 rounded-full",
+    md: "text-xs px-2 py-1 rounded-lg",
+    lg: "text-lg px-4 py-1 rounded-full",
+  }
+  const displaySize = {
+    md: "text-xs",
+    lg: "text-lg",
   }
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask((prev): Task => {
@@ -46,7 +50,7 @@ export const InputText: FC<Props> = ({
         {...props}
       />
       <span
-        className={`peer-checked:text-gray-200 peer-checked:line-through ${isEditing ? "opacity-0 hidden" : "opacity-100"}`}
+        className={`${displaySize[size]} peer-checked:text-gray-200 peer-checked:line-through ${isEditing ? "hidden opacity-0" : "opacity-100"}`}
       >
         {task[field] || defaultText}
       </span>
