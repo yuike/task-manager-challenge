@@ -25,7 +25,7 @@ export const EditableCheckbox: FC<Props> = ({ taskId, name, ...props }) => {
 
   return (
     <label
-      className={`relative flex items-center text-lg hover:cursor-pointer hover:opacity-50 ${getTaskCompletionStyle(taskId)}`}
+      className={`relative flex items-center hover:cursor-pointer hover:opacity-50 ${getTaskCompletionStyle(taskId)}`}
     >
       <input
         type="checkbox"
