@@ -1,0 +1,49 @@
+import { Meta, Title, IconGallery, IconItem } from '@storybook/blocks'
+import IconCalendar from './IconCalendar'
+import IconCheck from './IconCheck'
+import IconList from './IconList'
+import IconPencil from './IconPencil'
+import IconPlus from './IconPlus'
+import IconTimer from './IconTimer'
+import IconTrash from './IconTrash'
+
+
+<Meta title="Iconography" />
+
+# Iconography
+
+<IconGallery>
+  <IconItem name="calendar">
+    <IconCalendar />
+  </IconItem>
+  <IconItem name="check">
+    <IconCheck />
+  </IconItem>
+  <IconItem name="list">
+    <IconList />
+  </IconItem>
+  <IconItem name="pencil">
+    <IconPencil />
+  </IconItem>
+  <IconItem name="plus">
+    <IconPlus />
+  </IconItem>
+  <IconItem name="timer">
+    <IconTimer />
+  </IconItem>
+  <IconItem name="trash">
+    <IconTrash />
+  </IconItem>
+</IconGallery>
+
+## Usage
+
+```ts
+import IconCalendar from '@/icons/IconCalendar'
+```
+
+named exportはしていないので、好きな名前に変えてimportしてもいいです。
+
+```ts
+import Calendar from '@/icons/IconCalendar'
+```
