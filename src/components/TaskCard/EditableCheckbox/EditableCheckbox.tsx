@@ -45,6 +45,7 @@ export const EditableCheckbox: FC<Props> = ({ taskId, name, ...props }) => {
         field="title"
         size="lg"
         defaultText="Untitled task"
+        aria-label="Title"
       />
     </label>
   )

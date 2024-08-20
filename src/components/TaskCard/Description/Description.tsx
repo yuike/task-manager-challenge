@@ -10,6 +10,7 @@ export const Description: FC<Props> = ({ taskId }) => {
       taskId={taskId}
       field="description"
       placeholder="input description..."
+      aria-label="Description"
     />
   )
 }
