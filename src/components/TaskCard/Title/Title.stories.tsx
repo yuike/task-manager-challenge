@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { Provider } from "jotai"
 import { Title } from "./Title"
 
 const meta = {
@@ -10,6 +11,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  render: (args) => (
+    <Provider>
+      <Title {...args} />
+    </Provider>
+  ),
   args: {
     taskId: 1,
   },
