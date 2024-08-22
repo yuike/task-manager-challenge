@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/Button"
 import IconPlus from "@/icons/IconPlus"
 import { taskIdsAtom } from "@/libs/jotai/atoms"
 import { atom, useSetAtom } from "jotai"
 import type { FC } from "react"
-import { Button } from "../Button"
 
 export const AddButton: FC = () => {
   const addTaskAtom = atom(null, (get, set) => {

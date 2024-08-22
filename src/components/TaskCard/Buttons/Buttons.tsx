@@ -1,4 +1,4 @@
-import { IconButton } from "@/components/IconButton"
+import { IconButton } from "@/components/ui/IconButton"
 import IconCheck from "@/icons/IconCheck"
 import IconPencil from "@/icons/IconPencil"
 import IconTrash from "@/icons/IconTrash"
