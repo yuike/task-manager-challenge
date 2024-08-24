@@ -16,9 +16,10 @@ export async function GET() {
       },
       {
         id: 2,
-        title: "Task 2",
-        status: "inProgress",
-        description: "Description 2",
+        title: "Lorem ipsum dolor sit amet",
+        status: "done",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
         deadline: "2025-01-01",
         createdAt: "2023-01-02 12:00:00",
         updatedAt: "2023-01-02 12:00:00",
@@ -28,10 +29,11 @@ export async function GET() {
 }
 
 /**
- * タスクを1件登録する
+ * 新規タスクを1件登録する
  */
 export async function POST(request: Request) {
   // do something
+  console.log("New task", await request.json())
   return Response.json({
     status: 200,
     message: "success",
