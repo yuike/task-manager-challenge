@@ -1,12 +1,14 @@
 import {
+  errorMessageAtom,
   taskAtomFamily,
   taskIdsAtom,
   taskIsEditingAtomFamily,
 } from "@/libs/jotai/atoms"
+import { registerTask } from "@/services/registerTask"
 import { updateTask } from "@/services/updateTask"
 import type { Task } from "@/types/Task"
 import dayjs from "dayjs"
-import { useAtom, useAtomValue } from "jotai"
+import { useAtomValue } from "jotai"
 import { useAtomCallback } from "jotai/utils"
 import { useCallback } from "react"
 
@@ -14,6 +16,38 @@ export const useButtons = (taskId: number) => {
   const isEditing = useAtomValue(taskIsEditingAtomFamily(taskId))
   const taskIds = useAtomValue(taskIdsAtom)
   const task = useAtomValue(taskAtomFamily(taskId))
+
+  // TODO: handleXXXTaskは大部分で似通った処理をしているので、共通化できる
+  /**
+   * タスクを新規登録する
+   */
+  const handleRegisterTask = useAtomCallback(
+    useCallback(
+      async (get, set) => {
+        if (isEditing) {
+          const currentTask = get(taskAtomFamily(taskId))
+          const newTask: Task = {
+            ...currentTask,
+            status: "todo",
+            updatedAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+          }
+          set(taskAtomFamily(taskId), newTask)
+          set(taskIsEditingAtomFamily(taskId), false)
+          try {
+            await registerTask(newTask)
+          } catch (error) {
+            console.error("Failed to register task:", error)
+            // エラーが発生した場合、状態を元に戻す
+            set(taskAtomFamily(taskId), currentTask)
+            set(errorMessageAtom, "Failed to register task.")
+          }
+        } else {
+          set(taskIsEditingAtomFamily(taskId), true)
+        }
+      },
+      [taskId, isEditing],
+    ),
+  )
 
   /**
    * タスクの編集状態を切り替える
@@ -41,7 +75,7 @@ export const useButtons = (taskId: number) => {
             console.error("Failed to update task:", error)
             // エラーが発生した場合、状態を元に戻す
             set(taskAtomFamily(taskId), currentTask)
-            // TODO: ユーザーにエラーを通知する
+            set(errorMessageAtom, "Failed to update task.")
           }
         } else {
           set(taskIsEditingAtomFamily(taskId), true)
@@ -58,6 +92,14 @@ export const useButtons = (taskId: number) => {
     useCallback(
       async (get, set) => {
         const currentTask = get(taskAtomFamily(taskId))
+        if (currentTask.status === "new") {
+          // 新規登録中のタスクは削除するだけでよい
+          set(
+            taskIdsAtom,
+            taskIds.filter((id) => id !== taskId),
+          )
+          return
+        }
         const removedTask: Task = {
           ...currentTask,
           status: "gone",
@@ -75,11 +117,11 @@ export const useButtons = (taskId: number) => {
           // 更新されたタスクを使用して非同期操作を実行
           await updateTask(taskId, removedTask)
         } catch (error) {
-          console.error("Failed to update task:", error)
+          console.error("Failed to remove task:", error)
           // エラーが発生した場合、状態を元に戻す
           set(taskIdsAtom, [...taskIds, taskId])
           set(taskAtomFamily(taskId), currentTask)
-          // TODO: ユーザーにエラーを通知する
+          set(errorMessageAtom, "Failed to remove task.")
         }
       },
       [taskId, taskIds],
@@ -89,6 +131,7 @@ export const useButtons = (taskId: number) => {
     taskIds,
     task,
     isEditing,
+    handleRegisterTask,
     handleUpdateTask,
     handleRemoveTask,
   }

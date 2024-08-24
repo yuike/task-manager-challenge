@@ -12,7 +12,7 @@ export const useAddTask = () => {
       id: newId,
       title: "",
       deadline: "",
-      status: "todo",
+      status: "new",
       description: "",
       createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
       updatedAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),

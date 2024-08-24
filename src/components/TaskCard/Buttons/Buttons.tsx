@@ -6,8 +6,13 @@ import type { FC } from "react"
 import { useButtons } from "./Buttons.hooks"
 
 export const Buttons: FC<{ taskId: number }> = ({ taskId }) => {
-  const { isEditing, task, handleUpdateTask, handleRemoveTask } =
-    useButtons(taskId)
+  const {
+    isEditing,
+    task,
+    handleRegisterTask,
+    handleUpdateTask,
+    handleRemoveTask,
+  } = useButtons(taskId)
   return (
     <div className="absolute top-2 right-5 z-20 flex gap-4">
       <IconButton
@@ -19,7 +24,7 @@ export const Buttons: FC<{ taskId: number }> = ({ taskId }) => {
             <IconPencil aria-label="Edit" />
           )
         }
-        onClick={handleUpdateTask}
+        onClick={task.status === "new" ? handleRegisterTask : handleUpdateTask}
         disabled={task.status === "done"}
       />
       <IconButton
