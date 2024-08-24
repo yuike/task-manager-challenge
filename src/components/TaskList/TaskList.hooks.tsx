@@ -1,16 +1,16 @@
-"use client"
-
 import { fetcher } from "@/libs/SWR/fetcher"
-import { taskAtomFamily, taskIdsAtom } from "@/libs/jotai/atoms"
+import {
+  errorMessageAtom,
+  taskAtomFamily,
+  taskIdsAtom,
+} from "@/libs/jotai/atoms"
 import type { Task } from "@/types/Task"
-import { useAtom } from "jotai"
+import { useAtom, useAtomValue } from "jotai"
 import { useAtomCallback } from "jotai/utils"
-import { type FC, useCallback, useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import useSWR from "swr"
-import { TaskCard, TaskCardGroup } from "./TaskCard"
-import { ErrorMessage } from "./model/ErrorMessage"
 
-export const TaskList: FC = () => {
+export const useTaskList = () => {
   const { data, error, isLoading } = useSWR("/api/tasks", fetcher)
   const [taskIds, setTaskIds] = useAtom(taskIdsAtom)
   const initializeTasks = useAtomCallback(
@@ -33,22 +33,11 @@ export const TaskList: FC = () => {
     }
   }, [data, initializeTasks])
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) {
-    console.error(error)
-    return <div>failed to load</div>
-  }
+  const errorMessage = useAtomValue(errorMessageAtom)
 
-  return (
-    <>
-      <div className="mb-8">
-        <ErrorMessage />
-      </div>
-      <TaskCardGroup>
-        {taskIds.map((id) => {
-          return <TaskCard key={id} taskId={id} />
-        })}
-      </TaskCardGroup>
-    </>
-  )
+  return {
+    errorMessage,
+    swr: { data, error, isLoading },
+    taskIds,
+  }
 }
