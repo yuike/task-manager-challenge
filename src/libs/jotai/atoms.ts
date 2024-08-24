@@ -13,11 +13,13 @@ export const taskAtomFamily = atomFamily((id: number) =>
     deadline: "",
     status: "todo",
     description: "",
-    createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-    updatedAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+    createdAt: "",
+    updatedAt: "",
   }),
 )
 
 export const taskIsEditingAtomFamily = atomFamily((id: number) =>
   atom<boolean>(false),
 )
+
+export const errorMessageAtom = atom<string>("")
