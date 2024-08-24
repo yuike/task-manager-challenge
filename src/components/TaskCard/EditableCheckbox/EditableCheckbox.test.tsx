@@ -25,7 +25,7 @@ describe("<EditableCheckbox />", () => {
     store.set(taskIsEditingAtomFamily(1), true)
     render(
       <Provider store={store}>
-        <EditableCheckbox taskId={1} name="dummy" />
+        <EditableCheckbox text="dummy" taskId={1} name="dummy" />
       </Provider>,
     )
     expect(screen.getByRole("textbox")).toBeInTheDocument()
@@ -47,7 +47,7 @@ describe("<EditableCheckbox />", () => {
     // FIXME: このテストでStorybookのコンポーネント(<Default />)を使うと、テストが失敗する
     render(
       <Provider store={store}>
-        <EditableCheckbox taskId={1} name="dummy" />
+        <EditableCheckbox text="dummy" taskId={1} name="dummy" />
       </Provider>,
     )
     const beforeTask = store.get(taskAtomFamily(1))
@@ -58,6 +58,11 @@ describe("<EditableCheckbox />", () => {
     const afterTask = store.get(taskAtomFamily(1))
     expect(afterTask.status).toEqual("done")
   })
+
+  test.todo(
+    "チェックボックスにチェックを入れると、status:done, updatedAt:現在時刻になること",
+    async () => {},
+  )
 
   // INFO: このテストはInputTextコンポーネントで行う
   test.skip("タイトルを入力すると、そのタイトルでオブジェクトが更新されること", async () => {})
