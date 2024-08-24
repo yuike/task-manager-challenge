@@ -23,3 +23,7 @@ export const taskIsEditingAtomFamily = atomFamily((id: number) =>
 )
 
 export const errorMessageAtom = atom<string>("")
+
+export const taskIsCheckedAtomFamily = atomFamily((id: number) =>
+  atom<boolean>(false),
+)

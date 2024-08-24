@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import type { ChangeEvent, ComponentProps, FC } from "react"
 import { InputText } from "../InputText"
 import { getTaskCompletionStyle } from "../styles"
+import { useEditableCheckbox } from "./EditableCheckbox.hooks"
 
 interface Props extends Omit<ComponentProps<"input">, "className"> {
   taskId: number
@@ -18,16 +19,7 @@ export const EditableCheckbox: FC<Props> = ({
   text,
   ...props
 }) => {
-  const [isEditing] = useAtom(taskIsEditingAtomFamily(taskId))
-  const [task, setTask] = useAtom(taskAtomFamily(taskId))
-  const changeStatus = (event: ChangeEvent<HTMLInputElement>) => {
-    setTask((prev): Task => {
-      return {
-        ...prev,
-        status: event.target.checked ? "done" : "todo",
-      }
-    })
-  }
+  const { isEditing, task, handleCheckboxChange } = useEditableCheckbox(taskId)
 
   return (
     <label
@@ -37,7 +29,7 @@ export const EditableCheckbox: FC<Props> = ({
         type="checkbox"
         className="peer appearance-none"
         disabled={isEditing}
-        onChange={changeStatus}
+        onChange={handleCheckboxChange}
         checked={task.status === "done"}
         {...props}
       />
