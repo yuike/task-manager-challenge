@@ -23,6 +23,7 @@ export const InputText: FC<Props> = ({
 }) => {
   const [isEditing] = useAtom(taskIsEditingAtomFamily(taskId))
   const [task, setTask] = useAtom(taskAtomFamily(taskId))
+
   const inputSize = {
     md: "text-xs px-2 py-1 rounded-lg",
     lg: "text-lg px-4 py-1 rounded-full",
@@ -43,8 +44,8 @@ export const InputText: FC<Props> = ({
     <div className={`relative ${getTaskCompletionStyle(taskId)}`}>
       <input
         type="text"
-        className={`w-full bg-gray-200 text-gray-500 transition ease-in-out focus:outline-none focus:ring focus:ring-black ${inputSize[size]} ${isEditing ? "opacity-100" : "opacity-0 hidden"}`}
-        defaultValue={task.description}
+        className={`w-full bg-gray-200 text-gray-500 transition ease-in-out focus:outline-none focus:ring focus:ring-black ${inputSize[size]} ${isEditing ? "opacity-100" : "hidden opacity-0"}`}
+        defaultValue={task[field] || defaultText}
         onChange={handleChange}
         disabled={!isEditing}
         {...props}

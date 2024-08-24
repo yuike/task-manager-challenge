@@ -7,7 +7,10 @@ import type { ChangeEvent, FC } from "react"
 import { Radio } from "../Radio"
 import { getTaskCompletionStyle } from "../styles"
 
-export const Due: FC<{ taskId: number }> = ({ taskId }) => {
+export const Due: FC<{ taskId: number; deadline?: string }> = ({
+  taskId,
+  deadline = "",
+}) => {
   const [isEditing] = useAtom(taskIsEditingAtomFamily(taskId))
   const [task, setTask] = useAtom(taskAtomFamily(taskId))
   const setDeadline = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +53,7 @@ export const Due: FC<{ taskId: number }> = ({ taskId }) => {
             />
           </div>
         ) : (
-          <span>{task?.deadline}</span>
+          <span>{task?.deadline || deadline}</span>
         )}
       </fieldset>
     </div>

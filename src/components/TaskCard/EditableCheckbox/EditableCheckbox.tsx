@@ -9,9 +9,15 @@ import { getTaskCompletionStyle } from "../styles"
 interface Props extends Omit<ComponentProps<"input">, "className"> {
   taskId: number
   name: string
+  text: string
 }
 
-export const EditableCheckbox: FC<Props> = ({ taskId, name, ...props }) => {
+export const EditableCheckbox: FC<Props> = ({
+  taskId,
+  name,
+  text,
+  ...props
+}) => {
   const [isEditing] = useAtom(taskIsEditingAtomFamily(taskId))
   const [task, setTask] = useAtom(taskAtomFamily(taskId))
   const changeStatus = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +31,7 @@ export const EditableCheckbox: FC<Props> = ({ taskId, name, ...props }) => {
 
   return (
     <label
-      className={`relative flex items-center hover:cursor-pointer hover:opacity-50 ${getTaskCompletionStyle(taskId)}`}
+      className={`relative flex items-center font-bold hover:cursor-pointer hover:opacity-50 ${getTaskCompletionStyle(taskId)}`}
     >
       <input
         type="checkbox"
@@ -44,7 +50,7 @@ export const EditableCheckbox: FC<Props> = ({ taskId, name, ...props }) => {
         taskId={taskId}
         field="title"
         size="lg"
-        defaultText="Untitled task"
+        defaultText={text || "Untitled task"}
         aria-label="Title"
       />
     </label>

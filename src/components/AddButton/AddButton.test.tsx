@@ -19,6 +19,8 @@ describe("<AddButton />", () => {
   })
   test("storeに何もない状態でボタンを押すと、task固有のIDがインクリメントされること", async () => {
     const store = createStore()
+    const beforeTaskIds = store.get(taskIdsAtom)
+    expect(beforeTaskIds.length).toEqual(0)
     await Add.play?.({
       canvasElement: render(
         <Provider store={store}>

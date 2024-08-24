@@ -31,4 +31,20 @@ describe("<Buttons />", () => {
     const editButton = screen.getByRole("button", { name: "Edit" })
     expect(editButton).toBeDisabled()
   })
+
+  test("編集完了ボタンを押すと、isEditingがfalseに変化し、updatedAtが現在時刻に更新されること", async () => {
+    const store = createStore()
+    render(
+      <Provider store={store}>
+        <Default />
+      </Provider>,
+    )
+    expect(store.get(taskIsEditingAtomFamily(1))).toBe(false)
+    const editButton = screen.getByRole("button", { name: "Edit" })
+    editButton.click()
+
+    expect(store.get(taskIsEditingAtomFamily(1))).toBe(true)
+  })
+
+  test.todo("編集完了ボタンを押すと、putで送信が行われること", async () => {})
 })

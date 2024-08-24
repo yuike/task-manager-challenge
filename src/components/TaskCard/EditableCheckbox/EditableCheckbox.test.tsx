@@ -54,7 +54,6 @@ describe("<EditableCheckbox />", () => {
     expect(beforeTask.title).toEqual("")
     const checkbox = screen.getByRole("checkbox") as HTMLInputElement
     await user.click(checkbox)
-    console.log(checkbox.checked)
 
     const afterTask = store.get(taskAtomFamily(1))
     expect(afterTask.status).toEqual("done")

@@ -1,7 +1,7 @@
 "use client"
 import type { FC } from "react"
 
-import { useAtom } from "jotai"
+import { useAtomValue } from "jotai"
 
 import { taskAtomFamily } from "@/libs/jotai/atoms"
 import { Buttons } from "./Buttons"
@@ -26,13 +26,13 @@ const Frame: FC<FrameProps> = ({ children }) => {
 }
 
 export const TaskCard: FC<Props> = ({ taskId }) => {
-  const [task] = useAtom(taskAtomFamily(taskId))
+  const task = useAtomValue(taskAtomFamily(taskId))
   return (
     <Frame>
-      <Title taskId={task.id} />
-      <Description taskId={task.id} />
-      <Due taskId={task.id} />
-      <Buttons taskId={task.id} />
+      <Title taskId={taskId} title={task.title} />
+      <Description taskId={taskId} text={task.description} />
+      <Due taskId={taskId} deadline={task.deadline} />
+      <Buttons taskId={taskId} />
     </Frame>
   )
 }
