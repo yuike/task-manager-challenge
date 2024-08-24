@@ -43,12 +43,14 @@ describe("<AddButton />", () => {
       ).container,
     })
     const task = store.get(taskAtomFamily(1))
-    expect(task.id).toEqual(1)
-    expect(task.title).toEqual("")
-    expect(task.deadline).toEqual("")
-    expect(task.status).toEqual("todo")
-    expect(task.description).toEqual("")
-    expect(task.createdAt).toEqual("2024-01-01 12:00:00")
-    expect(task.createdAt).toEqual("2024-01-01 12:00:00")
+    expect(task).toMatchObject({
+      id: 1,
+      title: "",
+      deadline: "",
+      status: "new",
+      description: "",
+      createdAt: "2024-01-01 12:00:00",
+      updatedAt: "2024-01-01 12:00:00",
+    })
   })
 })
