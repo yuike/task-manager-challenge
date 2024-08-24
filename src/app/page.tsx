@@ -1,12 +1,9 @@
 "use client"
 
 import { AddButton } from "@/components/AddButton"
-import { TaskCard, TaskCardGroup } from "@/components/TaskCard"
-import { taskIdsAtom } from "@/libs/jotai/atoms"
-import { useAtomValue } from "jotai"
-
+import { TaskList } from "@/components/TaskList"
+import { Suspense } from "react"
 export default function Home() {
-  const taskIds = useAtomValue(taskIdsAtom)
   return (
     <section className="mx-4 my-12">
       <h2 className="text-2xl">My Tasks</h2>
@@ -14,11 +11,9 @@ export default function Home() {
         <AddButton />
       </div>
       <div className="mt-12">
-        <TaskCardGroup>
-          {taskIds.map((id) => (
-            <TaskCard key={id} taskId={id} />
-          ))}
-        </TaskCardGroup>
+        <Suspense fallback={<div>Loading...</div>}>
+          <TaskList />
+        </Suspense>
       </div>
     </section>
   )
