@@ -1,7 +1,7 @@
 "use client"
 
+import { ErrorMessage } from "@/components/ErrorMessage"
 import { TaskCard, TaskCardGroup } from "@/components/TaskCard"
-import { ErrorMessage } from "@/components/model/ErrorMessage"
 import type { FC } from "react"
 import { useTaskList } from "./TaskList.hooks"
 
