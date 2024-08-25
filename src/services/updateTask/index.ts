@@ -10,7 +10,7 @@ export const updateTask = async (id: number, body: Task): Promise<Task> => {
   })
 
   if (!response.ok) {
-    throw new Error("Failed to update task")
+    throw new Error("Failed to update task.")
   }
 
   return response.json()
