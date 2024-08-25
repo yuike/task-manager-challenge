@@ -26,6 +26,10 @@ export const useButtons = (taskId: number) => {
       async (get, set) => {
         if (isEditing) {
           const currentTask = get(taskAtomFamily(taskId))
+          if (currentTask.title === "") {
+            set(errorMessageAtom, "Title is required.")
+            return
+          }
           const newTask: Task = {
             ...currentTask,
             status: "todo",
@@ -35,8 +39,9 @@ export const useButtons = (taskId: number) => {
           set(taskIsEditingAtomFamily(taskId), false)
           try {
             await registerTask(newTask)
+            set(errorMessageAtom, "")
           } catch (error) {
-            console.error("Failed to register task:", error)
+            console.error("Error:", error)
             // エラーが発生した場合、状態を元に戻す
             set(taskAtomFamily(taskId), currentTask)
             set(errorMessageAtom, "Failed to register task.")
@@ -59,6 +64,10 @@ export const useButtons = (taskId: number) => {
       async (get, set) => {
         if (isEditing) {
           const currentTask = get(taskAtomFamily(taskId))
+          if (currentTask.title === "") {
+            set(errorMessageAtom, "Title is required.")
+            return
+          }
           const updatedTask: Task = {
             ...currentTask,
             updatedAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
@@ -71,8 +80,9 @@ export const useButtons = (taskId: number) => {
           try {
             // 更新されたタスクを使用して非同期操作を実行
             await updateTask(taskId, updatedTask)
+            set(errorMessageAtom, "")
           } catch (error) {
-            console.error("Failed to update task:", error)
+            console.error("Error:", error)
             // エラーが発生した場合、状態を元に戻す
             set(taskAtomFamily(taskId), currentTask)
             set(errorMessageAtom, "Failed to update task.")
@@ -112,6 +122,7 @@ export const useButtons = (taskId: number) => {
           taskIds.filter((id) => id !== taskId),
         )
         set(taskAtomFamily(taskId), removedTask)
+        set(errorMessageAtom, "")
 
         try {
           // 更新されたタスクを使用して非同期操作を実行
