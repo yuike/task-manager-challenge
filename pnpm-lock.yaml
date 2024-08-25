@@ -99,6 +99,9 @@ importers:
       msw:
         specifier: ^2.3.5
         version: 2.3.5(typescript@5.5.4)
+      msw-storybook-addon:
+        specifier: ^2.0.3
+        version: 2.0.3(msw@2.3.5(typescript@5.5.4))
       postcss:
         specifier: ^8
         version: 8.4.41
@@ -3905,6 +3908,11 @@ packages:
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+
+  msw-storybook-addon@2.0.3:
+    resolution: {integrity: sha512-CzHmGO32JeOPnyUnRWnB0PFTXCY1HKfHiEB/6fYoUYiFm2NYosLjzs9aBd3XJUryYEN0avJqMNh7nCRDxE5JjQ==}
+    peerDependencies:
+      msw: ^2.0.0
 
   msw@2.3.5:
     resolution: {integrity: sha512-+GUI4gX5YC5Bv33epBrD+BGdmDvBg2XGruiWnI3GbIbRmMMBeZ5gs3mJ51OWSGHgJKztZ8AtZeYMMNMVrje2/Q==}
@@ -9940,6 +9948,11 @@ snapshots:
   ms@2.1.2: {}
 
   ms@2.1.3: {}
+
+  msw-storybook-addon@2.0.3(msw@2.3.5(typescript@5.5.4)):
+    dependencies:
+      is-node-process: 1.2.0
+      msw: 2.3.5(typescript@5.5.4)
 
   msw@2.3.5(typescript@5.5.4):
     dependencies:
