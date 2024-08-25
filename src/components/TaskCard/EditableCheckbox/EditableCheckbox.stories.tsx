@@ -45,7 +45,7 @@ const ComponentWithJotai = ({
 
   return (
     <Provider store={store}>
-      <EditableCheckbox taskId={taskId} name="dummy" />
+      <EditableCheckbox text="dummy text" taskId={taskId} name="dummy" />
     </Provider>
   )
 }

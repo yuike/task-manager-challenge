@@ -18,5 +18,6 @@ export const Default: Story = {
   ),
   args: {
     taskId: 1,
+    title: "dummy title",
   },
 }

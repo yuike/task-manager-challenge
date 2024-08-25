@@ -44,7 +44,7 @@ const ComponentWithJotai = ({
 
   return (
     <Provider store={store}>
-      <Description taskId={taskId} />
+      <Description text="dummy text" taskId={taskId} />
     </Provider>
   )
 }
